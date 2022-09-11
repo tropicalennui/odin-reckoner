@@ -27,6 +27,14 @@ body {
 	row-gap: 10px;
 }
 
+#result {
+	justify-content: right;
+}
+
+.calc-button {
+	justify-content: center;
+}
+
 .calc-button,
 #result {
 	display: flex;
@@ -34,8 +42,8 @@ body {
 	border-radius: 5px;
 	font-family: 'Audiowide', sans-serif;
 	font-size: 72px;
-	justify-content: center;
 	align-items: center;
+	/* align-items: center; */
 }
 
 #result,
