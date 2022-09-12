@@ -1,11 +1,20 @@
 :root {
 	--input: 4;
 	--size: 500px;
+	--border: 3px;
+
+	--colour-primary: hsla(210, 10%, 20%, 1);
+	--colour-primary-light: hsla(210, 7%, 36%, 1);
+	--colour-primary-dark: hsla(204, 71%, 4%, 1);
+	--colour-secondary: hsla(208, 80%, 37%, 1);
+	--colour-secondary-light: hsla(214, 65%, 60%, 1);
+	--colour-secondary-dark: hsla(211, 100%, 24%, 1);
+	--colour-text: #ffffff;
 }
 
 body {
-	background-color: #121212;
-	color: antiquewhite;
+	background-color: var(--colour-primary-dark);
+	color: var(--colour-text);
 }
 
 #page {
@@ -33,12 +42,14 @@ body {
 
 .calc-button {
 	justify-content: center;
+	background-color:
 }
 
 .calc-button,
 #result {
 	display: flex;
-	border: 1px solid lime;
+	border: var(--border) solid var(--colour-secondary-light);
+	background-color: var(--colour-secondary-dark);
 	border-radius: 5px;
 	font-family: 'Audiowide', sans-serif;
 	font-size: 72px;
@@ -51,4 +62,9 @@ body {
 	margin-top: 10px;
 	margin-bottom: 10px;
 	width: var(--size);
+}
+
+#equals {
+	border: var(--border) solid var(--colour-secondary-dark);
+	background-color: var(--colour-secondary);
 }
