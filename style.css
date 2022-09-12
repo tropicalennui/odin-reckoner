@@ -1,6 +1,8 @@
 :root {
-	--input: 4;
-	--size: 500px;
+	--grid-height: 6;
+	--grid-width: 4;
+	--calc-height: 60vh;
+	--calc-width: 30vw;
 	--border: 3px;
 
 	--colour-primary: hsla(210, 10%, 20%, 1);
@@ -27,16 +29,22 @@ body {
 
 #calc-container {
 	display: grid;
-	grid-template-columns: repeat(var(--input), 1fr);
-	grid-template-rows: repeat(var(--input), 1fr);
+	grid-template-columns: repeat(var(--grid-width), 1fr);
+	grid-template-rows: repeat(var(--grid-height), 1fr);
 	justify-content: center;
-	height: var(--size);
-	width: var(--size);
+	height: var(--calc-height);
+	width: var(--calc-width);
 	column-gap: 10px;
 	row-gap: 10px;
 }
 
+#result-container {
+	grid-column-start: 1;
+	grid-column-end: span 4;
+}
+
 #result {
+	display: flex;
 	justify-content: right;
 }
 
@@ -46,7 +54,7 @@ body {
 }
 
 .calc-button,
-#result {
+#result-container {
 	display: flex;
 	border: var(--border) solid var(--colour-secondary-light);
 	background-color: var(--colour-secondary-dark);
@@ -54,17 +62,20 @@ body {
 	font-family: 'Audiowide', sans-serif;
 	font-size: 72px;
 	align-items: center;
-	/* align-items: center; */
 }
 
 #result,
 #calc-container {
 	margin-top: 10px;
 	margin-bottom: 10px;
-	width: var(--size);
+	width: var(--calc-width);
 }
 
 #equals {
 	border: var(--border) solid var(--colour-secondary-dark);
 	background-color: var(--colour-secondary);
+}
+
+#clr {
+	font-size: 42px;
 }
