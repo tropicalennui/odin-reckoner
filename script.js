@@ -8,14 +8,14 @@ const clearButton = document.getElementById('clr');
 
 let input = '';
 let result = '';
-let firstNum = 0;
-let secondNum = 0;
+let firstNum = '';
+let secondNum = '';
 let action = '';
 
 resultDiv.innerText = `${resultClear}`;
 inputDiv.innerText = `${inputClear}`;
 calcButtonDivs.forEach(calcButtonDiv => {
-	calcButtonDiv.addEventListener('click', clicker);
+	calcButtonDiv.addEventListener('click', interact);
 });
 clearButton.addEventListener('click', clear);
 
@@ -27,39 +27,45 @@ function operate(num1, operator, num2) {
 					: 'ERROR';
 }
 
-function clicker(e) {
+function interact(clickedDiv) {
 	const operators = ['+', '-', '*', '/'];
 
-	if (action == '' && !Number.isNaN(parseInt(e.target.id))) {
-		if (firstNum == 0) {
-			firstNum = e.target.id;
+	if (action == '' && !Number.isNaN(parseInt(clickedDiv.target.id))) {
+		//store the first number until an operator is selected
+		if (firstNum == '') {
+			firstNum = clickedDiv.target.id;
 		} else {
-			firstNum += e.target.id;
+			firstNum += clickedDiv.target.id;
 		}
 		input = firstNum;
-	}
-
-	if (operators.includes(e.target.id)) {
-		action = e.target.id;
+	} else if (operators.includes(clickedDiv.target.id) && firstNum != '' && secondNum == '') {
+		//store the last operator clicked until second number is selected
+		action = clickedDiv.target.id;
+		input = firstNum + ' ' + action;
+	} else if (firstNum != '' && action != '' && !Number.isNaN(parseInt(clickedDiv.target.id))) {
+		//store the second number until another operator or equals is selected
+		if (secondNum == '') {
+			secondNum = clickedDiv.target.id;
+		} else {
+			secondNum += clickedDiv.target.id;
+		}
+		input = firstNum + ' ' + action + ' ' + secondNum;
+	} else if (operators.includes(clickedDiv.target.id) && secondNum != '') {
+		//operate the two numbers and save as firstNum
+		firstNum = operate(parseInt(firstNum), action, parseInt(secondNum));
+		action = clickedDiv.target.id;
+		secondNum = '';
 		input = firstNum + ' ' + action;
 	}
 
-	if (firstNum != '' && action != '' && !Number.isNaN(parseInt(e.target.id))) {
-		if (secondNum == 0) {
-			secondNum = e.target.id;
-		} else {
-			secondNum += e.target.id;
-		}
-		input = firstNum + ' ' + action + ' ' + secondNum;
-	}
 	inputDiv.innerText = `${input}`;
 }
 
 function clear() {
 	input = '';
 	result = '';
-	firstNum = 0;
-	secondNum = 0;
+	firstNum = '';
+	secondNum = '';
 	action = '';
 	resultDiv.innerText = `${resultClear}`;
 	inputDiv.innerText = `${inputClear}`;
