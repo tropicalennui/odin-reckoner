@@ -1,3 +1,24 @@
+
+const resultClear = '0';
+const inputClear = 'Waiting for input...'
+const resultDiv = document.getElementById('result');
+const inputDiv = document.getElementById('input');
+const calcButtonDivs = document.querySelectorAll('.calc-button');
+const clearButton = document.getElementById('clr');
+
+let input = '';
+let result = '';
+let firstNum = 0;
+let secondNum = 0;
+let action = '';
+
+resultDiv.innerText = `${resultClear}`;
+inputDiv.innerText = `${inputClear}`;
+calcButtonDivs.forEach(calcButtonDiv => {
+	calcButtonDiv.addEventListener('click', clicker);
+});
+clearButton.addEventListener('click', clear);
+
 function operate(num1, operator, num2) {
 	return operator == '+' ? num1 + num2
 		: operator == '-' ? num1 - num2
@@ -5,10 +26,6 @@ function operate(num1, operator, num2) {
 				: operator == '/' ? num1 / num2
 					: 'ERROR';
 }
-
-let firstNum = 0;
-let secondNum = 0;
-let action = '';
 
 function clicker(e) {
 	const operators = ['+', '-', '*', '/'];
@@ -38,23 +55,12 @@ function clicker(e) {
 	inputDiv.innerText = `${input}`;
 }
 
-let result = '';
-const resultClear = '0';
-const resultDiv = document.getElementById('result');
-resultDiv.innerText = `${resultClear}`;
-
-let input = '';
-const inputClear = 'Waiting for input...'
-const inputDiv = document.getElementById('input');
-inputDiv.innerText = `${inputClear}`;
-
-const calcButtonDivs = document.querySelectorAll('.calc-button');
-calcButtonDivs.forEach(calcButtonDiv => {
-	calcButtonDiv.addEventListener('click', clicker);
-});
-
-const clearButton = document.getElementById('clr');
-clearButton.addEventListener('click', function (e) {
+function clear() {
 	input = '';
+	result = '';
+	firstNum = 0;
+	secondNum = 0;
+	action = '';
+	resultDiv.innerText = `${resultClear}`;
 	inputDiv.innerText = `${inputClear}`;
-});
+}
