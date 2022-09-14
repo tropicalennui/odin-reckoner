@@ -55,13 +55,13 @@ function interact(clickedDiv) {
 		action = clickedDiv.target.id;
 		secondNum = '';
 		input = firstNum + ' ' + action;
-	} else if (clickedDiv.target.id = '=' && firstNum !== '' && secondNum !== '' && action !== '') {
+	} else if (clickedDiv.target.id == '=' && firstNum !== '' && secondNum !== '' && action !== '') {
 		//operate the two numbers and set the result field
 		resultDiv.innerText = operate(parseInt(firstNum), action, parseInt(secondNum));
 		input = firstNum + ' ' + action + ' ' + secondNum + ' =';
 		firstNum = '';
 		action = '';
-		secondNum = ''
+		secondNum = '';
 	}
 
 	inputDiv.innerText = `${input}`;
