@@ -3,7 +3,7 @@
 	--grid-width: 4;
 	--calc-height: 65vh;
 	--calc-width: 35vw;
-	--border: 3px;
+	--border: 4px;
 
 	--colour-page-background: hsla(204, 71%, 4%, 1);
 	--colour-blue-primary: hsla(212, 80%, 42%, 1);
@@ -39,6 +39,9 @@ body {
 	width: var(--calc-width);
 	column-gap: 10px;
 	row-gap: 10px;
+	padding: 25px 25px 40px 25px;
+	background-color: var(--colour-blue-dark);
+	border-radius: 30px;
 }
 
 #result-container {
@@ -66,20 +69,14 @@ body {
 .calc-button,
 #result-container {
 	display: flex;
-	border-radius: 5px;
+	border-radius: 30px;
 	align-items: center;
 }
 
 .number,
 #result-container {
 	border: var(--border) solid var(--colour-blue-light);
-	background-color: var(--colour-blue-dark);
-}
-
-#calc-container {
-	margin-top: 10px;
-	margin-bottom: 10px;
-	width: var(--calc-width);
+	background-color: var(--colour-blue-primary);
 }
 
 #equals {
