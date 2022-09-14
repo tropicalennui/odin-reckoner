@@ -7,7 +7,6 @@ const calcButtonDivs = document.querySelectorAll('.calc-button');
 const clearButton = document.getElementById('clr');
 
 let input = '';
-let result = '';
 let firstNum = '';
 let secondNum = '';
 let action = '';
@@ -17,7 +16,7 @@ inputDiv.innerText = `${inputClear}`;
 calcButtonDivs.forEach(calcButtonDiv => {
 	calcButtonDiv.addEventListener('click', interact);
 });
-clearButton.addEventListener('click', clear);
+clearButton.addEventListener('click', clearAll);
 
 function operate(num1, operator, num2) {
 	return operator == '+' ? num1 + num2
@@ -56,12 +55,19 @@ function interact(clickedDiv) {
 		action = clickedDiv.target.id;
 		secondNum = '';
 		input = firstNum + ' ' + action;
+	} else if (clickedDiv.target.id = '=' && firstNum !== '' && secondNum !== '' && action !== '') {
+		//operate the two numbers and set the result field
+		resultDiv.innerText = operate(parseInt(firstNum), action, parseInt(secondNum));
+		input = firstNum + ' ' + action + ' ' + secondNum + ' =';
+		firstNum = '';
+		action = '';
+		secondNum = ''
 	}
 
 	inputDiv.innerText = `${input}`;
 }
 
-function clear() {
+function clearAll() {
 	input = '';
 	result = '';
 	firstNum = '';
