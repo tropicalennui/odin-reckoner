@@ -19,7 +19,7 @@ body {
 	background-color: var(--colour-page-background);
 	color: var(--colour-text);
 	font-family: 'Audiowide', sans-serif;
-	font-size: 68px;
+	font-size: 3vw;
 }
 
 #page {
@@ -37,8 +37,8 @@ body {
 	justify-content: center;
 	height: var(--calc-height);
 	width: var(--calc-width);
-	column-gap: 10px;
-	row-gap: 10px;
+	column-gap: 0.5vw;
+	row-gap: 1vh;
 	padding: 25px 25px 40px 25px;
 	background-color: var(--colour-blue-dark);
 	border-radius: 30px;
@@ -59,7 +59,7 @@ body {
 
 #input {
 	margin-top: 10px;
-	font-size: 24px;
+	font-size: 1.5vw;
 }
 
 .calc-button {
@@ -85,10 +85,10 @@ body {
 }
 
 #clr {
-	font-size: 40px;
 	color: black;
 	border: var(--border) solid var(--colour-orange-dark);
 	background-color: var(--colour-orange-primary);
+	font-size: 2.5vw;
 }
 
 .operator {
