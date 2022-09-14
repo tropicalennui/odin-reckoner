@@ -5,13 +5,14 @@
 	--calc-width: 35vw;
 	--border: 3px;
 
-	--colour-primary: hsla(210, 10%, 20%, 1);
-	--colour-primary-light: hsla(210, 7%, 36%, 1);
 	--colour-page-background: hsla(204, 71%, 4%, 1);
-	--colour-secondary: hsla(208, 80%, 37%, 1);
-	--colour-secondary-light: hsla(214, 65%, 60%, 1);
-	--colour-secondary-dark: hsla(211, 100%, 24%, 1);
-	--colour-text: #ffffff;
+	--colour-blue-primary: hsla(212, 80%, 42%, 1);
+	--colour-blue-light: hsla(219, 86%, 66%, 1);
+	--colour-blue-dark: hsla(215, 100%, 28%, 1);
+	--colour-orange-primary: hsla(38, 100%, 50%, 1);
+	--colour-orange-light: hsla(45, 100%, 64%, 1);
+	--colour-orange-dark: hsla(34, 100%, 39%, 1);
+	--colour-text: hsla(0, 100%, 100%, 1);
 }
 
 body {
@@ -65,10 +66,14 @@ body {
 .calc-button,
 #result-container {
 	display: flex;
-	border: var(--border) solid var(--colour-secondary-light);
-	background-color: var(--colour-secondary-dark);
 	border-radius: 5px;
 	align-items: center;
+}
+
+.number,
+#result-container {
+	border: var(--border) solid var(--colour-blue-light);
+	background-color: var(--colour-blue-dark);
 }
 
 #calc-container {
@@ -78,10 +83,19 @@ body {
 }
 
 #equals {
-	border: var(--border) solid var(--colour-secondary-dark);
-	background-color: var(--colour-secondary);
+	border: var(--border) solid var(--colour-blue-dark);
+	background-color: var(--colour-blue-primary);
 }
 
 #clr {
 	font-size: 40px;
+	color: black;
+	border: var(--border) solid var(--colour-orange-dark);
+	background-color: var(--colour-orange-primary);
+}
+
+.operator {
+	border: var(--border) solid var(--colour-orange-dark);
+	background-color: var(--colour-orange-light);
+	color: black;
 }
