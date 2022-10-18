@@ -65,14 +65,14 @@ body {
 .blank-button,
 .number,
 .operation,
-.equals {
+.button {
 	justify-content: center;
 }
 
 .blank-button,
 .number,
 .operation,
-.equals,
+.button,
 #result-container {
 	display: flex;
 	border-radius: 30px;
@@ -85,8 +85,7 @@ body {
 	background-color: var(--colour-blue-primary);
 }
 
-#clr,
-.equals {
+.button {
 	color: black;
 	border: var(--border) solid var(--colour-orange-dark);
 	background-color: var(--colour-orange-primary);

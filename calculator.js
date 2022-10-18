@@ -6,6 +6,7 @@ const clearDiv = document.getElementById('clr');
 const equalsDiv = document.getElementById('=');
 const numberDivs = document.querySelectorAll('.number');
 const operationDivs = document.querySelectorAll('.operation');
+const backspaceDiv = document.getElementById('backspace');
 
 let firstNum = '';
 let secondNum = '';
@@ -21,6 +22,7 @@ numberDivs.forEach(numberDiv => {
 operationDivs.forEach(operationDiv => {
 	operationDiv.addEventListener('click', operation);
 });
+backspaceDiv.addEventListener('click', backspace);
 
 function operation(clickedOp) {
 	if (firstNum !== '' && secondNum === '') {
@@ -81,4 +83,23 @@ function clear() {
 	action = '';
 	resultDiv.innerText = `${defaultResult}`;
 	inputDiv.innerText = `${defaultInput}`;
+}
+
+function backspace() {
+	if (action === '' && firstNum.length == 1) {
+		clear();
+		return;
+	} else if (action === '' && firstNum.length > 1) {
+		firstNum = firstNum.slice(0, -1);
+		inputDiv.innerText = firstNum;
+	} else if (secondNum.length == 1) {
+		secondNum = '';
+		inputDiv.innerText = firstNum + ' ' + action;
+	} else if (secondNum.length > 1) {
+		secondNum = secondNum.slice(0, -1);
+		inputDiv.innerText = firstNum + ' ' + action + ' ' + secondNum;
+	} else if (action !== '' && secondNum === '') {
+		action = '';
+		inputDiv.innerText = firstNum;
+	}
 }
