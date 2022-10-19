@@ -13,6 +13,8 @@
 	--colour-orange-light: hsla(45, 100%, 64%, 1);
 	--colour-orange-dark: hsla(34, 100%, 39%, 1);
 	--colour-text: hsla(0, 100%, 100%, 1);
+	--colour-grey-dark: hsla(264, 2%, 42%, 1);
+	--colour-grey-light: hsla(260, 4%, 67%, 1);
 }
 
 body {
@@ -50,6 +52,16 @@ body {
 	display: flex;
 	flex-direction: column;
 	padding-right: 20px;
+}
+
+#backspace {
+	grid-column-start: 1;
+	grid-column-end: span 2;
+}
+
+#clr {
+	grid-column-start: 3;
+	grid-column-end: span 2;
 }
 
 #result,
@@ -96,4 +108,11 @@ body {
 	border: var(--border) solid var(--colour-orange-dark);
 	background-color: var(--colour-orange-light);
 	color: black;
+}
+
+.disabled {
+	color: white;
+	border: var(--border) solid var(--colour-grey-light);
+	background-color: var(--colour-grey-dark);
+	font-size: 2.5vw;
 }

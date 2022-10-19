@@ -56,6 +56,7 @@ function number(clickedNum) {
 		}
 		inputDiv.innerText = firstNum + ' ' + action + ' ' + secondNum;
 	}
+	toggleDisabled()
 }
 
 function equals() {
@@ -66,6 +67,7 @@ function equals() {
 		firstNum = '';
 		action = '';
 		secondNum = '';
+		toggleDisabled()
 	}
 }
 
@@ -83,6 +85,7 @@ function clear() {
 	action = '';
 	resultDiv.innerText = `${defaultResult}`;
 	inputDiv.innerText = `${defaultInput}`;
+	toggleDisabled()
 }
 
 function backspace() {
@@ -102,4 +105,52 @@ function backspace() {
 		action = '';
 		inputDiv.innerText = firstNum;
 	}
+	toggleDisabled()
+}
+
+function toggleDisabledOperations() {
+	if (firstNum !== '') {
+		operationDivs.forEach(operationDiv => {
+			if (operationDiv.classList.contains('disabled')) {
+				operationDiv.classList.toggle('disabled');
+			}
+		});
+	} else {
+		operationDivs.forEach(operationDiv => {
+			if (!operationDiv.classList.contains('disabled')) {
+				operationDiv.classList.toggle('disabled');
+			}
+		});
+	}
+}
+
+function toggleDisabledEquals() {
+	if (secondNum !== '' && equalsDiv.classList.contains('disabled')) {
+		equalsDiv.classList.toggle('disabled');
+	} else if (secondNum == '' && !equalsDiv.classList.contains('disabled')) {
+		equalsDiv.classList.toggle('disabled');
+	}
+}
+
+function toggleDisabledClear() {
+	if (firstNum !== '' && clearDiv.classList.contains('disabled')) {
+		clearDiv.classList.toggle('disabled');
+	} else if (firstNum == '' && !clearDiv.classList.contains('disabled')) {
+		clearDiv.classList.toggle('disabled');
+	}
+}
+
+function toggleDisabledBackspace() {
+	if (firstNum !== '' && backspaceDiv.classList.contains('disabled')) {
+		backspaceDiv.classList.toggle('disabled');
+	} else if (firstNum == '' && !backspaceDiv.classList.contains('disabled')) {
+		backspaceDiv.classList.toggle('disabled');
+	}
+}
+
+function toggleDisabled() {
+	toggleDisabledOperations();
+	toggleDisabledEquals();
+	toggleDisabledBackspace();
+	toggleDisabledClear();
 }
