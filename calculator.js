@@ -7,52 +7,77 @@ const equalsDiv = document.getElementById('=');
 const numberDivs = document.querySelectorAll('.number');
 const operationDivs = document.querySelectorAll('.operation');
 const backspaceDiv = document.getElementById('backspace');
+const keyDivs = document.querySelectorAll('.key');
+const numberMap = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
 
 let firstNum = '';
 let secondNum = '';
 let action = '';
+let clickedDivId = '';
 
 resultDiv.innerText = `${defaultResult}`;
 inputDiv.innerText = `${defaultInput}`;
+
+//click
 clearDiv.addEventListener('click', clear);
 equalsDiv.addEventListener('click', equals);
 numberDivs.forEach(numberDiv => {
-	numberDiv.addEventListener('click', number);
+	numberDiv.addEventListener('click', captureClick);
 });
 operationDivs.forEach(operationDiv => {
-	operationDiv.addEventListener('click', operation);
+	operationDiv.addEventListener('click', captureClick);
 });
 backspaceDiv.addEventListener('click', backspace);
 
-function operation(clickedOp) {
+//keyboard
+keyDivs.forEach(keyDiv => {
+	keyDiv.addEventListener('keydown', captureKey);
+});
+
+function captureKey(keydown) {
+	key = keydown.key;
+	if (numberMap.includes(key)) {
+		number(key);
+	}
+}
+
+function captureClick(click) {
+	clickedDivId = click.target.id;
+	if (click.target.classList.contains('number')) {
+		number(clickedDivId);
+	} else if (click.target.classList.contains('operation')) {
+		operation(clickedDivId);
+	}
+}
+
+function operation(op) {
+	action = op;
 	if (firstNum !== '' && secondNum === '') {
 		//store the last operator clicked until second number is selected
-		action = clickedOp.target.id;
 		inputDiv.innerText = firstNum + ' ' + action;
 	} else if (secondNum !== '') {
 		//operate the two numbers and save as firstNum
 		firstNum = operate(parseInt(firstNum), action, parseInt(secondNum));
-		action = clickedOp.target.id;
 		secondNum = '';
 		inputDiv.innerText = firstNum + ' ' + action;
 	}
 }
 
-function number(clickedNum) {
+function number(num) {
 	if (action === '') {
 		//store the first number until an operator is selected
 		if (firstNum === '') {
-			firstNum = clickedNum.target.id;
+			firstNum = num;
 		} else {
-			firstNum += clickedNum.target.id;
+			firstNum += num;
 		}
 		inputDiv.innerText = firstNum;
 	} else if (action !== '' && firstNum !== '') {
 		//store the second number until another operator or equals is selected
 		if (secondNum === '') {
-			secondNum = clickedNum.target.id;
+			secondNum = num;
 		} else {
-			secondNum += clickedNum.target.id;
+			secondNum += num;
 		}
 		inputDiv.innerText = firstNum + ' ' + action + ' ' + secondNum;
 	}
@@ -64,9 +89,7 @@ function equals() {
 		//operate the two numbers and set the result field
 		resultDiv.innerText = operate(parseInt(firstNum), action, parseInt(secondNum));
 		inputDiv.innerText = firstNum + ' ' + action + ' ' + secondNum + ' =';
-		firstNum = '';
-		action = '';
-		secondNum = '';
+		nullVars();
 		toggleDisabled()
 	}
 }
@@ -80,9 +103,7 @@ function operate(num1, operator, num2) {
 }
 
 function clear() {
-	firstNum = '';
-	secondNum = '';
-	action = '';
+	nullVars();
 	resultDiv.innerText = `${defaultResult}`;
 	inputDiv.innerText = `${defaultInput}`;
 	toggleDisabled()
@@ -153,4 +174,10 @@ function toggleDisabled() {
 	toggleDisabledEquals();
 	toggleDisabledBackspace();
 	toggleDisabledClear();
+}
+
+function nullVars() {
+	firstNum = '';
+	secondNum = '';
+	action = '';
 }
