@@ -7,16 +7,19 @@ const equalsDiv = document.getElementById('=');
 const numberDivs = document.querySelectorAll('.number');
 const operationDivs = document.querySelectorAll('.operation');
 const backspaceDiv = document.getElementById('backspace');
-const keyDivs = document.querySelectorAll('.key');
-const numberMap = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+const numberMap = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
 
 let firstNum = '';
 let secondNum = '';
 let action = '';
 let clickedDivId = '';
+let key = '';
 
 resultDiv.innerText = `${defaultResult}`;
 inputDiv.innerText = `${defaultInput}`;
+
+//keyboard
+document.addEventListener('keypress', captureKey);
 
 //click
 clearDiv.addEventListener('click', clear);
@@ -29,13 +32,10 @@ operationDivs.forEach(operationDiv => {
 });
 backspaceDiv.addEventListener('click', backspace);
 
-//keyboard
-keyDivs.forEach(keyDiv => {
-	keyDiv.addEventListener('keydown', captureKey);
-});
-
-function captureKey(keydown) {
-	key = keydown.key;
+function captureKey(pressed) {
+	key = pressed.key;
+	console.log(pressed.key);
+	console.log(key);
 	if (numberMap.includes(key)) {
 		number(key);
 	}
