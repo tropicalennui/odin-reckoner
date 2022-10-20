@@ -1,3 +1,5 @@
+//no floating point support yet. might add it one day.
+
 const defaultResult = '0';
 const defaultInput = 'Waiting for input...'
 const resultDiv = document.getElementById('result');
