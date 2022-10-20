@@ -8,6 +8,7 @@ const numberDivs = document.querySelectorAll('.number');
 const operationDivs = document.querySelectorAll('.operation');
 const backspaceDiv = document.getElementById('backspace');
 const numberMap = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
+const operatorMap = ['+', '-', '*', '/'];
 
 let firstNum = '';
 let secondNum = '';
@@ -34,10 +35,14 @@ backspaceDiv.addEventListener('click', backspace);
 
 function captureKey(pressed) {
 	key = pressed.key;
-	console.log(pressed.key);
-	console.log(key);
 	if (numberMap.includes(key)) {
 		number(key);
+	} else if (operatorMap.includes(key)) {
+		operation(key);
+	} else if (key == '=' || key == 'Enter') {
+		equals();
+	} else if (key == 'Backspace') {
+		backspace();
 	}
 }
 
